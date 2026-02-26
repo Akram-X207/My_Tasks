@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Tasks</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+  <main class="app-wrapper">
+    <section class="todo-card">
+
+      <!-- Header -->
+      <header class="card-header">
+        <div class="header-top">
+          <div>
+            <h1>My Tasks</h1>
+          </div>
+          <div class="header-actions">
+            <!-- Settings -->
+            <button id="settingsBtn" class="icon-btn" title="Settings">
+              <i class="ri-settings-3-line"></i>
+            </button>
+            <!-- Logout -->
+            <button id="logoutBtn" class="icon-btn" title="Sign out">
+              <i class="ri-logout-box-r-line"></i>
+            </button>
+          </div>
+        </div>
+        <p id="date"></p>
+        <p id="user-info" class="user-info"></p>
+      </header>
+
+      <!-- Input -->
+      <div class="input-row">
+        <input id="taskInput" type="text" placeholder="What do you need to do?" />
+        <button id="addBtn">+</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+      <!-- List -->
+      <ul id="taskList" class="task-list"></ul>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state">
+        <i class="fas fa-clipboard-list"></i>
+        <p>No tasks here yet!</p>
+      </div>
+
+      <!-- Footer -->
+      <footer class="card-footer">
+        <span id="itemsLeft">0 items left</span>
+        <button id="clearCompleted">Clear completed</button>
+      </footer>
+    </section>
+  </main>
+
+  <!-- ── Settings Modal ───────────────────────────────────────────────────── -->
+  <div id="settingsOverlay" class="modal-overlay hidden">
+    <div class="modal-card">
+
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button id="closeSettings" class="modal-close-btn">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+
+      <!-- Alert inside modal -->
+      <div id="modal-alert" class="auth-alert hidden"></div>
+
+      <!-- Change Username -->
+      <div class="modal-section">
+        <h3 class="modal-section-title">Username</h3>
+        <div class="modal-field-row">
+          <input id="new-username" type="text" placeholder="New username" maxlength="20" class="modal-input" />
+          <button id="save-username-btn" class="modal-save-btn">
+            <span>Save</span>
+            <i class="ri-loader-4-line auth-spinner hidden" id="username-spinner"></i>
+          </button>
+        </div>
+        <span class="auth-field-hint">3–20 chars · letters, numbers, underscores</span>
+      </div>
+
+      <!-- Divider -->
+      <div class="modal-divider"></div>
+
+      <!-- Change Password -->
+      <div class="modal-section">
+        <h3 class="modal-section-title">Password</h3>
+        <div class="modal-field-col">
+          <input id="new-password" type="password" placeholder="New password (min 6 chars)" class="modal-input" />
+          <input id="confirm-password" type="password" placeholder="Confirm new password" class="modal-input" />
+          <button id="save-password-btn" class="modal-save-btn full-width">
+            <span>Update Password</span>
+            <i class="ri-loader-4-line auth-spinner hidden" id="password-spinner"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Supabase from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    document.getElementById("date").textContent =
+      new Date().toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+      });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Tasks – Sign In</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+</head>
+
+<body>
+    <main class="app-wrapper">
+        <section class="todo-card auth-card">
+
+            <!-- Header -->
+            <header class="card-header">
+                <h1>My Tasks</h1>
+                <p id="auth-subtitle">Sign in to continue</p>
+            </header>
+
+            <!-- Tab switcher -->
+            <div class="tabs auth-tabs">
+                <button class="filter-btn active" id="tab-login" data-tab="login">Login</button>
+                <button class="filter-btn" id="tab-signup" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Form -->
+            <div class="auth-body">
+
+                <!-- Alert banner -->
+                <div id="auth-alert" class="auth-alert hidden"></div>
+
+                <!-- Email / Password / Username fields -->
+                <div class="auth-field-group">
+
+                    <!-- Username (sign up only) -->
+                    <div class="auth-field" id="username-field" style="display:none">
+                        <label for="auth-username">Username</label>
+                        <input id="auth-username" type="text" placeholder="e.g. cool_user_42" autocomplete="username"
+                            maxlength="20" />
+                        <span class="auth-field-hint">3–20 chars · letters, numbers, underscores</span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="auth-email">Email</label>
+                        <input id="auth-email" type="email" placeholder="you@example.com" autocomplete="email" />
+                    </div>
+                    <div class="auth-field">
+                        <label for="auth-password">Password</label>
+                        <input id="auth-password" type="password" placeholder="••••••••"
+                            autocomplete="current-password" />
+                    </div>
+                </div>
+
+                <!-- Primary CTA -->
+                <button id="auth-submit-btn" class="auth-submit-btn">
+                    <span id="auth-btn-text">Sign In</span>
+                    <i class="ri-loader-4-line auth-spinner hidden" id="auth-spinner"></i>
+                </button>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Supabase from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>
