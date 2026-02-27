@@ -13,14 +13,27 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicPath = path.join(__dirname, "../public");
 
 // ─── Supabase Admin Client (service role – never expose to browser) ───────────
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+let supabase = null;
+if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  );
+}
 
 // ─── Middleware ────────────────────────────────────────────────────────────────
 app.use(cors());
 app.use(express.json());
+
+// If Supabase failed to initialize due to missing env vars, block all /api/ requests gracefully
+app.use((req, res, next) => {
+  if (!supabase && req.path.startsWith("/api/")) {
+    return res.status(500).json({
+      error: "Server misconfiguration: Missing Supabase environment variables on Vercel. Please add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to your Vercel project settings."
+    });
+  }
+  next();
+});
 
 // ─── Serve frontend static files (Locally only) ─────────────────────────────────
 if (process.env.NODE_ENV !== "production") {
