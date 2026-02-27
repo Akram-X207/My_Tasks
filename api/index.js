@@ -19,7 +19,7 @@ const supabase = createClient(
 );
 
 // ─── Middleware ────────────────────────────────────────────────────────────────
-app.use(cors({ origin: ["http://localhost:3001", "https://todo-app-wheat-xi.vercel.app", "*"] }));
+app.use(cors());
 app.use(express.json());
 
 // ─── Serve frontend static files (Locally only) ─────────────────────────────────
