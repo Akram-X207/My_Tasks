@@ -119,6 +119,25 @@
     </div>
   </div>
 
+  <!-- ── Logout Confirmation Modal ────────────────────────────────────────── -->
+  <div id="logoutOverlay" class="modal-overlay hidden">
+    <div class="modal-card modal-card-small">
+      <div class="modal-header">
+        <h2 style="color: #ef4444;"><i class="ri-error-warning-line"></i> Sign Out</h2>
+        <button id="closeLogout" class="modal-close-btn">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="modal-section" style="margin-bottom: 24px;">
+        <p style="color: #e5e7eb; font-size: 0.95rem; text-align: center;">Are you sure you want to sign out of your account?</p>
+      </div>
+      <div class="modal-actions-row">
+        <button id="cancelLogoutBtn" class="modal-cancel-btn">Cancel</button>
+        <button id="confirmLogoutBtn" class="modal-save-btn btn-danger">Log out</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Supabase from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/config.js"></script>

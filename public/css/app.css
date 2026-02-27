@@ -224,3 +224,43 @@
     margin-top: -4px;
     display: block;
 }
+
+/* ── Logout Modal Specifics ──────────────────────────────────────────────── */
+.modal-card-small {
+    max-width: 340px;
+}
+
+.modal-actions-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-cancel-btn {
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    color: #d1d5db;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    flex: 1;
+}
+
+.modal-cancel-btn:hover {
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+    flex: 1;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #ef4444;
+    color: white;
+}

@@ -32,6 +32,12 @@ const passwordSpinner = document.getElementById("password-spinner");
 // Modal Alert
 const modalAlert = document.getElementById("modal-alert");
 
+// Logout Modal
+const logoutOverlay = document.getElementById("logoutOverlay");
+const closeLogoutBtn = document.getElementById("closeLogout");
+const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+
 // ─── State ────────────────────────────────────────────────────────────────────
 let tasks = [];
 let currentFilter = "all";
@@ -188,7 +194,23 @@ function updateFilterUI() {
 }
 
 // ─── Logout ───────────────────────────────────────────────────────────────────
-logoutBtn.addEventListener("click", async () => {
+logoutBtn.addEventListener("click", () => {
+  logoutOverlay.classList.remove("hidden");
+});
+
+const hideLogoutModal = () => logoutOverlay.classList.add("hidden");
+closeLogoutBtn.addEventListener("click", hideLogoutModal);
+cancelLogoutBtn.addEventListener("click", hideLogoutModal);
+
+// Close modal if clicking outside the card
+logoutOverlay.addEventListener("click", (e) => {
+  if (e.target === logoutOverlay) hideLogoutModal();
+});
+
+confirmLogoutBtn.addEventListener("click", async () => {
+  // Disable button and show slight feedback while signing out
+  confirmLogoutBtn.disabled = true;
+  confirmLogoutBtn.style.opacity = "0.7";
   await sb.auth.signOut();
   window.location.replace("auth.html");
 });
